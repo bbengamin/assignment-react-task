@@ -10,7 +10,8 @@ export const useUsers = () => {
     isRefetching: isUsersRefetching
   } = useQuery({
     queryKey: ['users'],
-    queryFn: () => getUsersService()
+    queryFn: () => getUsersService(),
+    enabled: false
   });
 
   const {mutate: createUser, isPending: isCreatingUser} = useMutation({
@@ -24,5 +25,6 @@ export const useUsers = () => {
     isUsersRefetching,
     createUser,
     isCreatingUser,
+    refetchUsers,
   };
 };
