@@ -1,58 +1,49 @@
-import React, {useState} from "react";
-import './App.css';
+import React, {useState, useEffect} from "react";
+import Modal from "./components/Modal";
+import Form from "./components/Form";
+import Table from "./components/Table";
 import {useUsers} from "./hooks/useUsers";
-import {User} from "./types/User";
+import {FormData} from "./types/Form";
 
 function App() {
-  const emptyUserData: User = {id: '', firstName: "", lastName: ""}
-
-  const [newUser, setNewUser] = useState<User>(emptyUserData);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     users,
     isUsersLoading,
-    createUser,
+    isUsersRefetching,
     isCreatingUser,
-    isUsersRefetching
+    createUser,
+    refetchUsers
   } = useUsers();
 
-  const handleAddUser = () => {
-    createUser(newUser);
-    setNewUser(emptyUserData);
-  };
+  useEffect(() => {
+    refetchUsers()
+  }, []);
+
+  const submitForm = (formData: FormData) => {
+    createUser(formData)
+    closeModal()
+  }
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div className="App">
-      <div>
-        <h1>Add New User Form</h1>
-        <input
-          type="text"
-          placeholder="First Name"
-          value={newUser.firstName}
-          onChange={(e) => setNewUser({...newUser, firstName: e.target.value})}
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={newUser.lastName}
-          onChange={(e) => setNewUser({...newUser, lastName: e.target.value})}
-        />
-        <button onClick={handleAddUser} disabled={isCreatingUser}>
-          {isCreatingUser ? "Adding..." : "Add User"}
+      <div className={'flex flex-col p-4 md:p-8 gap-5 md:gap-8'}>
+        <button
+          onClick={openModal}
+          className="px-4 py-2 background-gradient-base text-white rounded-xl hover:background-gradient-hover focus:outline-none focus:ring-2 focus:ring-[#7FBDD966] active:background-gradient-active max-w-40"
+        >
+          Add user
         </button>
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <h2 className="text-xl font-medium mb-4">Fill out the form</h2>
+          <Form onSubmit={submitForm}/>
+        </Modal>
+        <Table items={users || []} loading={isUsersLoading || isUsersRefetching || isCreatingUser}/>
       </div>
-      {isUsersLoading || isUsersRefetching ? (
-        <span>Loading users...</span>
-      ) : (
-        <div>
-          <h1>Users List</h1>
-          <div>
-            {users?.map((user) => (
-              <div key={user.id}>{`${user.firstName} ${user.lastName}`}</div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
