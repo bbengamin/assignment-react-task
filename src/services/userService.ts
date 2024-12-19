@@ -1,4 +1,5 @@
-import {User} from '../types/User';
+import type {User} from '../types/User';
+import type {FormData} from '../types/Form'
 
 const API_URL = process.env.REACT_APP_BASE_API_URL;
 
@@ -17,7 +18,7 @@ export async function getUsersService(): Promise<User[]> {
   }
 }
 
-export async function createUserService(newUser: Partial<User>): Promise<User> {
+export async function createUserService(newUser: FormData): Promise<User> {
   try {
     const response = await fetch(`${API_URL}/users`, {
       method: "POST",
