@@ -45,15 +45,19 @@ function Input(
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-400 ${
+        className={`w-full px-3 py-2 rounded-xl border ${
           isError
-            ? 'border-red-400 focus:ring-red-400'
-            : 'border-gray-300'
+            ? 'border-red-400 focus:border-red-400 focus:outline-none bg-[#E25E4C1F]'
+            : 'border-gray-300  focus:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#7FBDD966]'
         }`}
         aria-invalid={isError}
       />
       {isError && errorMessage && (
-        <p className="mt-1 text-sm text-red-500">{errorMessage}</p>
+        <div className={'flex items-center gap-2 mt-1'}>
+          <img src="/warning.svg" alt="warning-icon" width={13} height={13}/>
+          <p className="text-sm text-[]">{errorMessage}</p>
+        </div>
+
       )}
     </div>
   );

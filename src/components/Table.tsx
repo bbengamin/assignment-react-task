@@ -22,9 +22,10 @@ function Table() {
           <span
             className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"></span>
         </div>) : (
-          <div className="overflow-x-auto w-full sm:-mx-6 lg:-mx-8 rounded-md p-7 border border-gray-300">
+          <div
+            className="overflow-x-auto hide-scrollbar w-full rounded-md p-7 border border-gray-300">
             <div className="inline-block min-w-full">
-              <div className="overflow-hidden">
+              <div className="overflow-auto hide-scrollbar max-h-[500px]">
                 <table className="min-w-full text-left text-sm font-light">
                   <thead className="border-b font-medium">
                   <tr>

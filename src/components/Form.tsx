@@ -33,7 +33,7 @@ function Form({onSubmit}: FormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+    <form onSubmit={handleSubmit} className="max-w-md w-full">
       <Input
         label="First name"
         id="firstName"
@@ -58,9 +58,8 @@ function Form({onSubmit}: FormProps) {
       />
       <button
         type="submit"
-        className="max-w-[72px] w-full py-1 bg-blue-400 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="max-w-[72px] w-full py-1 text-white rounded-xl background-gradient-base hover:background-gradient-hover focus:outline-none focus:ring-2 focus:ring-[#7FBDD966] active:background-gradient-active"
         disabled={isCreatingUser}
-
       >
         Submit
       </button>

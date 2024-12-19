@@ -15,7 +15,7 @@ function Modal({isOpen, onClose, children}: ModalProps) {
       onClick={onClose}
     >
       <div
-        className="bg-white mx-2 rounded-lg shadow-lg p-6 w-full max-w-md relative"
+        className="bg-white relative shadow-lg p-6 md:rounded-xl md:max-w-md w-full h-full md:h-max"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -24,7 +24,9 @@ function Modal({isOpen, onClose, children}: ModalProps) {
         >
           &times;
         </button>
-        {children}
+        <div className={'h-full justify-center items-start flex flex-col w-full'}>
+          {children}
+        </div>
       </div>
     </div>
   );
