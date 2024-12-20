@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     refetchUsers()
-  }, []);
+  }, [refetchUsers]);
 
   const submitForm = (formData: FormData) => {
     createUser(formData)

@@ -19,7 +19,7 @@ function Table({items, loading}: TableProps) {
           <div
             className="overflow-x-auto hide-scrollbar w-full rounded-md p-7 border border-gray-300">
             <div className="inline-block min-w-full">
-              <div className="overflow-auto hide-scrollbar max-h-[500px]">
+              <div className="overflow-auto track-background max-h-[500px]">
                 <table className="min-w-full text-left text-sm font-light">
                   <thead className="border-b font-medium bg-white sticky top-0 z-10">
                   <tr>
